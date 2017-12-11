@@ -7,22 +7,95 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        .clientX {
+        .clientLeft {
             width: 100px;
             height: 100px;
             border-left: 6px solid black;
             padding: 15px;
             background-color: #999;
+            /* 下面部分是测试内容超出的情况 */
             direction: rtl;
             overflow: scroll;
             white-space: nowrap;
+        }
+        .clientTop {
+            width: 100px;
+            height: 100px;
+            margin-top: 10px;
+            border-top: 6px solid black;
+            padding: 15px;
+            background-color: #999;
+        }
+        .clientWidth {
+            width: 100px;
+            height: 100px;
+            margin-top: 10px;
+            padding: 15px;
+            background-color: #999;
+            /* 以下部分是测试内容超出的情况 */
+            white-space: nowrap;
+            overflow: scroll;
+        }
+        .testWrapper {
+            margin-top: 15px;
+            position: relative;
+            width: 200px;
+            height: 200px;
+            padding: 10px;
+            background-color: #999999;
+            border: 3px solid #333;
+        }
+        .test {
+            width: 80px;
+            height: 80px;
+            float: right;
+            padding: 5px;
+            background-color: #ccff33;
+            margin-top: 36px;
+            border: 8px solid #333;
+        }
+        .offsetWidth {
+            margin-top: 15px;
+            width: 100px;
+            height: 100px;
+            padding: 8px;
+            overflow: scroll;
+            border: 9px solid black;
+        }
+        .scrollLeft {
+            width: 100px;
+            height: 100px;
+            margin-top: 15px;
+            white-space: nowrap;
+            overflow: scroll;
+            border: 3px solid  black;
         }
     </style>
 </head>
 <body>
 
-<div class="clientX">
-    这是clientX，永远都不要放弃你的梦想
+<div class="clientLeft">
+    这是clientLeft，永远都不要放弃你的梦想
+</div>
+
+<div class="clientTop">
+    这是clientTop，永远都不要放弃你的梦想
+</div>
+
+<div class="clientWidth">
+    这是clientWidth，永远都不要放弃你的梦想
+</div>
+
+<div class="testWrapper">
+    <div class="test">用来测试test的offsetParent元素</div>
+</div>
+
+<div class="offsetWidth">
+    这是offsetWidth，永远都不要放弃你的梦想
+</div>
+
+<div class="scrollLeft">
+    这是scrollLeft，永远都不要放弃你的梦想
 </div>
 
 <script>
@@ -35,9 +108,43 @@
 	console.log.apply(this, arguments);
   };
 
-  // 测试clientX 属性
-  let clientX = $ele('.clientX');
-  $log('clientLeft的值是：' + clientX.clientLeft);
+  // 测试clientLeft 属性
+  let clientLeft = $ele('.clientLeft');
+  $log('clientLeft的值是：' + clientLeft.clientLeft);
+
+  // 测试clientTop 属性
+  let clientTop = $ele('.clientTop');
+  $log('clientTop的值是：' + clientTop.clientTop);
+
+  // 测试clientWidth 属性
+  let clientWidth = $ele('.clientWidth');
+  $log('clientWidth的值是：' + clientWidth.clientWidth);
+
+  // 测试offsetParent 属性
+  let test = $ele('.test');
+  let testWrapper = $ele('.testWrapper');
+  $log('test的offsetParent的值是：', test.offsetParent === testWrapper);
+
+  // 测试offsetLeft属性和offsetTop属性
+  $log('test的offsetLeft的值是：' + test.offsetLeft);
+  $log('test的offsetTop的值是：' + test.offsetTop);
+
+  // 测试offsetWidth属性
+  let offsetWidth = $ele('.offsetWidth');
+  $log('offsetWidth的值是：' + offsetWidth.offsetWidth);
+
+  // 测试scrollLeft属性
+  let scrollLeft = $ele('.scrollLeft');
+  $log('scrollLeft的值是：' + scrollLeft.scrollLeft);
+  // 修改scrollLeft的值
+  scrollLeft.scrollLeft = 10;
+  $log('scrollLeft的值是：' + scrollLeft.scrollLeft);
+
+  // 测试scrollWidth属性的值
+  $log('scrollWidth的值是：' + scrollLeft.scrollWidth);
+
+
+
 
 
 </script>
